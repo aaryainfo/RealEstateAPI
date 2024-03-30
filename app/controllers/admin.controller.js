@@ -1,0 +1,92 @@
+const db = require("../models");
+// const config = require("../config/auth.config");
+const uuid = require('uuid');
+const Property = db.property;
+const sequelize = db.sequelize;
+
+
+exports.allAccess = (req, res) => {
+    res.status(200).send("Public Content.");
+  };
+  
+  exports.userBoard = (req, res) => {
+    res.status(200).send("User Content.");
+  };
+  
+  exports.adminBoard = (req, res) => {
+    res.status(200).send("Admin Content.");
+  };
+  
+  exports.moderatorBoard = (req, res) => {
+    res.status(200).send("Moderator Content.");
+  };
+
+
+  // My controllers
+
+  // Create Property
+  exports.createProperty = async (req, res) => {
+    // Save product to Database
+    try {
+
+      // Sync the model with the database, force option set to true
+      await sequelize.sync({ alter: false });
+
+      const property = await Property.create({
+        id: uuid.v4(),
+        propertyType: req.body.propertyType,
+        name: req.body.name,
+        price: req.body.price,
+      });
+
+      res.send({ message: "Property created successfully!", data: {...property.dataValues} });
+  
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  }
+
+  // Get property list
+  exports.getPropertyList = async (req, res) => {
+      // Save product to Database
+      try {
+        const property = await Property.findAll();
+  
+        res.send({ message: "Property List get successfully!", data: [...property] });
+  
+      } catch (error) {
+        res.status(500).send({ message: error.message, data: [] });
+      }
+    
+    };
+  
+  // Delete property 
+  exports.deleteProperty = async (req, res) => {
+    // Save product to Database
+    try {
+      const property = await Property.destroy({ where: { id: req.body.id } })
+
+      res.send({ message: "Property deleted successfully!", data: {...property} });
+
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  
+  };
+
+  // Update property 
+  exports.updateProperty = async (req, res) => {
+    // Save product to Database
+    try {
+      const property = await Property.update({ 
+        propertyType: req.body.propertyType,
+        name: req.body.name,
+        price: req.body.price, }, { where: { id: req.body.id } })
+
+      res.send({ message: "Property updated successfully!", data: {...property} });
+
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  
+  };
