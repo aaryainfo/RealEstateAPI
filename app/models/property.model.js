@@ -35,15 +35,43 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         defaultValue: Sequelize.UUIDV4 // Using Sequelize.UUIDV4 to generate default UUIDs
       },
+      property: {
+        type: Sequelize.STRING
+      },
       propertyType: {
         type: Sequelize.STRING
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       price: {
         type: Sequelize.STRING
-      }
+      },
+      unit: {
+        type: Sequelize.STRING
+      },
+      location: {
+        type: Sequelize.STRING
+      },
+      address: {
+        type: Sequelize.STRING
+      },
+      videoLinks: {
+        type: Sequelize.JSON
+      },
+      carpetArea: {
+        type: Sequelize.STRING
+      },
+      images: {
+        type: Sequelize.JSON
+      },
+      details: {
+        type: Sequelize.STRING
+      },
+      isActive: {
+        type: Sequelize.BOOLEAN
+      },
     });
   
     return Property;
