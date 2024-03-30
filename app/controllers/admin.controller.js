@@ -73,6 +73,12 @@ exports.allAccess = (req, res) => {
   exports.deleteProperty = async (req, res) => {
     // Save product to Database
     try {
+      // Check for not found
+      const propertyFind = await Property.findOne({ where: { id: req.body.id } });
+      if (propertyFind === null) {
+        res.send({ message: "Property Not Found", code: "NotFound" });
+        return;
+      } 
       const property = await Property.destroy({ where: { id: req.body.id } })
 
       res.send({ message: "Property deleted successfully!", data: {...property} });
@@ -87,10 +93,25 @@ exports.allAccess = (req, res) => {
   exports.updateProperty = async (req, res) => {
     // Save product to Database
     try {
+      // Check for not found
+      const propertyFind = await Property.findOne({ where: { id: req.body.id } });
+      if (propertyFind === null) {
+        res.send({ message: "Property Not Found", code: "NotFound" });
+        return;
+      }
       const property = await Property.update({ 
-        propertyType: req.body.propertyType,
-        name: req.body.name,
-        price: req.body.price, }, { where: { id: req.body.id } })
+        property:  req.body.property ?? '',
+        propertyType: req.body.propertyType ?? '',
+        name: req.body.name ?? '',
+        price: req.body.price ?? null,
+        unit: req.body.unit ?? '',
+        location: req.body.location ?? '',
+        address: req.body.address ?? '',
+        videoLinks: JSON.stringify(req.body.videoLinks) ?? [],
+        carpetArea: req.body.carpetArea ?? '',
+        images: JSON.stringify(req.body.images) ?? [],
+        details: req.body.details ?? '',
+        isActive: req.body.isActive ?? true, }, { where: { id: req.body.id } })
 
       res.send({ message: "Property updated successfully!", data: {...property} });
 
