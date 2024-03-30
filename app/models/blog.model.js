@@ -17,7 +17,8 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     images: {
-      type: Sequelize.JSON
+      type: Sequelize.ARRAY(Sequelize.TEXT),
+      defaultValue: [],
     },
     mostPopular: {
       type: Sequelize.INTEGER

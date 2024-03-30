@@ -19,7 +19,7 @@ const sequelize = db.sequelize;
         id: uuid.v4(),
         title:  req.body.title ?? '',
         content: req.body.content ?? '',
-        images: JSON.stringify(req.body.images) ?? [],
+        images: req.body.images ?? [],
         mostPopular: req.body.mostPopular ?? 0,
         isActive: req.body.isActive ?? true,
       });
@@ -78,7 +78,7 @@ const sequelize = db.sequelize;
       const blog = await Blog.update({ 
         title:  req.body.title ?? '',
         content: req.body.content ?? '',
-        images: JSON.stringify(req.body.images) ?? [],
+        images: req.body.images ?? [],
         mostPopular: req.body.mostPopular ?? 0,
         isActive: req.body.isActive ?? true, }, { where: { id: req.body.id } })
 

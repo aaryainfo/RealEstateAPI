@@ -41,9 +41,9 @@ exports.allAccess = (req, res) => {
         unit: req.body.unit ?? '',
         location: req.body.location ?? '',
         address: req.body.address ?? '',
-        videoLinks: JSON.stringify(req.body.videoLinks) ?? [],
+        videoLinks: req.body.videoLinks ?? [],
         carpetArea: req.body.carpetArea ?? '',
-        images: JSON.stringify(req.body.images) ?? [],
+        images: req.body.images ?? [],
         details: req.body.details ?? '',
         isActive: req.body.isActive ?? true,
       });
@@ -107,9 +107,9 @@ exports.allAccess = (req, res) => {
         unit: req.body.unit ?? '',
         location: req.body.location ?? '',
         address: req.body.address ?? '',
-        videoLinks: JSON.stringify(req.body.videoLinks) ?? [],
+        videoLinks: req.body.videoLinks ?? [],
         carpetArea: req.body.carpetArea ?? '',
-        images: JSON.stringify(req.body.images) ?? [],
+        images: req.body.images ?? [],
         details: req.body.details ?? '',
         isActive: req.body.isActive ?? true, }, { where: { id: req.body.id } })
 
