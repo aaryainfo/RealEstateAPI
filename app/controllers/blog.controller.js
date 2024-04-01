@@ -6,6 +6,14 @@ const sequelize = db.sequelize;
 
   // My controllers
 
+  const getB64Data = (dataArray) => {
+    console.log("dataArray: ",dataArray)
+    return dataArray.forEach((data) => {
+      console.log("data: ", data)
+        return Buffer.from(data).toString('base64');
+    })
+  }
+
   // Create Blog
   exports.createBlog = async (req, res) => {
     console.log("req.body: ", req.body)
@@ -14,14 +22,15 @@ const sequelize = db.sequelize;
 
       // Sync the model with the database, force option set to true
       await sequelize.sync({ alter: false });
+      // console.log("getB64Data(req.body.images): ", getB64Data(req.body.images))
 
       const blog = await Blog.create({
         id: uuid.v4(),
         title:  req.body.title ?? '',
         content: req.body.content ?? '',
-        images: req.body.images ?? [],
+        // images: req.body.images ?? [],
         mostPopular: req.body.mostPopular ?? 0,
-        isActive: req.body.isActive ?? true,
+        isActive: req.body.isActive ?? 0,
       });
 
       res.send({ message: "Blog created successfully!", data: {...blog.dataValues} });

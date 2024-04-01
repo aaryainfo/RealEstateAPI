@@ -16,10 +16,10 @@ module.exports = (sequelize, Sequelize) => {
     content: {
       type: Sequelize.STRING
     },
-    images: {
-      type: Sequelize.ARRAY(Sequelize.TEXT),
-      defaultValue: [],
-    },
+    // images: {
+    //   type: Sequelize.ARRAY(Sequelize.TEXT),
+    //   // defaultValue: [],
+    // },
     mostPopular: {
       type: Sequelize.INTEGER
     },
