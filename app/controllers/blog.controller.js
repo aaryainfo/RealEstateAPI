@@ -87,7 +87,7 @@ const sequelize = db.sequelize;
       const blog = await Blog.update({ 
         title:  req.body.title ?? '',
         content: req.body.content ?? '',
-        images: req.body.images ?? [],
+        // images: req.body.images ?? [],
         mostPopular: req.body.mostPopular ?? 0,
         isActive: req.body.isActive ?? true, }, { where: { id: req.body.id } })
 
@@ -98,3 +98,18 @@ const sequelize = db.sequelize;
     }
   
   };
+
+  // Get blog with id
+  exports.getBlogWithId = async (req, res) => {
+    console.log("req.body.id: ", req.body)
+      // Save blog to Database
+      try {
+        const blog = await Blog.findOne({where: {"id": req.body.id}});
+  
+        res.send({ message: "Blog get successfully!", data: blog });
+  
+      } catch (error) {
+        res.status(500).send({ message: error.message, data: [] });
+      }
+    
+    };

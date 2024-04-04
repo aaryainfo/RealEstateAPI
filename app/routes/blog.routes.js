@@ -60,5 +60,13 @@ module.exports = function(app) {
     controller.updateBlog
   );
 
+  // Get blog with id api
+  app.get(
+    "/api/admin/blog/getBlogWithId",
+    [authJwt.verifyToken],
+    controller.getBlogWithId
+  );
+
+
 
 };
