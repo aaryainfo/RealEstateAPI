@@ -86,3 +86,18 @@ const sequelize = db.sequelize;
     }
   
   };
+
+  // Get customer with id
+  exports.getCustomerWithId = async (req, res) => {
+    console.log("req.body.id: ", req.body)
+      // Save blog to Database
+      try {
+        const customer = await Customer.findOne({ where: { id: req.body.id } });
+  
+        res.send({ message: "Customer get successfully!", data: customer });
+  
+      } catch (error) {
+        res.status(500).send({ message: error.message, data: [] });
+      }
+    
+    };
