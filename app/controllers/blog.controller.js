@@ -104,7 +104,7 @@ const sequelize = db.sequelize;
     console.log("req.body.id: ", req.body)
       // Save blog to Database
       try {
-        const blog = await Blog.findOne({where: {"id": req.body.id}});
+        const blog = await Blog.findOne({ where: { id: req.body.id } });
   
         res.send({ message: "Blog get successfully!", data: blog });
   
