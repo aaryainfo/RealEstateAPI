@@ -30,5 +30,12 @@ module.exports = function(app) {
     controller.updateCustomer
   );
 
+  // Get customer with id api
+  app.post(
+    "/api/admin/customer/getCustomerWithId",
+    [authJwt.verifyToken],
+    controller.getCustomerWithId
+  );
+
 
 };
