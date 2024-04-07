@@ -30,17 +30,17 @@ module.exports = (sequelize, Sequelize) => {
       address: {
         type: Sequelize.STRING
       },
-      // videoLinks: {
-      //   type: Sequelize.ARRAY(Sequelize.TEXT),
-      //   defaultValue: [],
-      // },
+      videoLinks: {
+        type: Sequelize.JSON,
+        defaultValue: [],
+      },
       carpetArea: {
         type: Sequelize.STRING
       },
-      // images: {
-      //   type: Sequelize.ARRAY(Sequelize.TEXT),
-      //   defaultValue: [],
-      // },
+      images: {
+        type: Sequelize.JSON,
+        defaultValue: [],
+      },
       details: {
         type: Sequelize.STRING
       },
