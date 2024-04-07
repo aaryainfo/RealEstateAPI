@@ -42,4 +42,11 @@ module.exports = function(app) {
     [authJwt.verifyToken],
     controller.updateProperty
   );
+
+  // Update property list api
+  app.post(
+    "/api/admin/property/getPropertyWithId",
+    [authJwt.verifyToken],
+    controller.getPropertyWithId
+  );
 };
