@@ -27,6 +27,7 @@ const sequelize = db.sequelize;
         carpetArea: req.body.carpetArea ?? '',
         // images: req.body.images ?? [],
         details: req.body.details ?? '',
+        isHot: req.body.isHot ?? true,
         isActive: req.body.isActive ?? true,
       });
 
@@ -93,6 +94,7 @@ const sequelize = db.sequelize;
         carpetArea: req.body.carpetArea ?? '',
         images: req.body.images ?? [],
         details: req.body.details ?? '',
+        isHot: req.body.isHot ?? true,
         isActive: req.body.isActive ?? true, }, { where: { id: req.body.id } })
 
       res.send({ message: "Property updated successfully!", data: {...property} });

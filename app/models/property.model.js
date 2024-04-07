@@ -44,6 +44,9 @@ module.exports = (sequelize, Sequelize) => {
       details: {
         type: Sequelize.STRING
       },
+      isHot: {
+        type: Sequelize.BOOLEAN
+      },
       isActive: {
         type: Sequelize.BOOLEAN
       },
