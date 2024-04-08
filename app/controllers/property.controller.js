@@ -27,6 +27,7 @@ const sequelize = db.sequelize;
         carpetArea: req.body.carpetArea ?? '',
         images: req.body.images ?? [],
         details: req.body.details ?? '',
+        isHot: req.body.isHot ?? true,
         isActive: req.body.isActive ?? true,
       });
 
@@ -93,6 +94,7 @@ const sequelize = db.sequelize;
         carpetArea: req.body.carpetArea ?? '',
         images: req.body.images ?? [],
         details: req.body.details ?? '',
+        isHot: req.body.isHot ?? true,
         isActive: req.body.isActive ?? true, }, { where: { id: req.body.id } })
 
       res.send({ message: "Property updated successfully!", data: {...property} });
@@ -101,4 +103,19 @@ const sequelize = db.sequelize;
       res.status(500).send({ message: error.message });
     }
   
+  };
+
+  // Get property with id
+  exports.getPropertyWithId = async (req, res) => {
+    console.log("req.body.id: ", req.body)
+      // Save blog to Database
+      try {
+        const property = await Property.findOne({ where: { id: req.body.id } });
+  
+        res.send({ message: "Property get successfully!", data: property });
+  
+      } catch (error) {
+        res.status(500).send({ message: error.message, data: [] });
+      }
+    
   };
